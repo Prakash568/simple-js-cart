@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/min.js"></script>
+</head>
+<body>
+    
+    <ul id="ul-element"><h1>MENUS</h1></ul>
+
+    <h1>Your Cart</h1>
+    <div id ="cart"></div>
+
+
+    <h1 id="sum">Total</h1>
+    <div id="total_amount"></div>
+
+</body>
+</html>
+<script>
+
+
+$ul = $('ul');
+
+
+var $cart = [];
+var $choice=[];
+
+var $menus = [
+            {name:" Chicken Burger",price:15},
+            {name:" Veg Rissoto",price:18},
+            {name:"Vegan Bowl",price:20},
+            {name:"Magic Mushroom",price:18},
+         ];
+
+
+
+     $.each($menus,function(key,value){
+           var $li =  $('<li></li>');
+           $li.text(value.name+ ' '+ '$' + value.price);
+           $ul.append($li);
+                $li.on("click",function(e)
+                {
+                  var $ch = value.name+ '  ' +value.price;
+                  $choice.push($ch);
+
+                  var $dispaly = displayItems($choice);
+                  $cart.push(value);
+                  $("#cart").html( $("#cart").html()+$dispaly);
+                })
+         });
+
+
+       function getCartTotal($cart)
+         {
+             
+             var $total_amount = 0;
+   
+               for(let i =0;i<$cart.length;i++)
+                {
+                    var $c = $cart[i];
+                    $total_amount += $c['price']; 
+                }
+               
+            return $total_amount;
+         }
+         
+
+         $("#sum").on("click",function(e){
+               var $amount =  getCartTotal($cart);
+               $('#total_amount').html($amount);
+  
+         })
+
+         function displayItems($hoice)
+         {
+             //console.log("Hello");
+             //console.log($choice);
+             
+   
+               for(let i =0;i<$choice.length;i++)
+                {
+                    var $c = $choice[i];
+                   
+                    
+                }
+               
+            return $c
+         }
+        
+       // console.log(`${$choice} hello`);
+
+</script>
